@@ -1,0 +1,106 @@
+<?php
+
+/**
+ * Description of Orden
+ *
+ * @author Galo Izquierdo
+ */
+class Orden {
+
+  protected $db;
+
+  const ACTIVO = 0;
+  const FACTURADO = 5;
+  const CERRADO = 3;
+
+//  public $id;
+//  public $codcli;
+//  public $codtec;
+//  public $marca;
+//  public $modelo;
+//  public $imei;
+//  public $fecing;
+//  public $fecfac;
+//  public $estado;
+
+  public function __construct(PDO $db) {
+    $this->db = $db;
+  }
+
+  public function getById(string $id) {
+    try {
+      $sql = "SELECT * FROM orden WHERE id = :id";
+      $q = $this->db->prepare($sql);
+      $q->bindParam(":id", $id, PDO::PARAM_INT);
+      $q->execute();
+      $rows = $q->fetchAll();
+      return $rows;
+    } catch (PDOException $e) {
+      error_log($e->getMessage());
+      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+    }
+  }
+
+  public function getCount() {
+    try {
+      $sql = "SELECT count(id) FROM orden";
+      $q = $this->db->prepare($sql);
+      $q->execute();
+      $count = $q->fetchColumn(); // devuelve directamente el número
+      return $count;
+    } catch (PDOException $e) {
+      error_log($e->getMessage());
+      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+    }
+  }
+
+  public function getAll($estado) {
+    try {
+      error_log('ordenes abiertas getall');
+      $sql = "SELECT * FROM orden where estado=:estado";
+      $q = $this->db->prepare($sql);
+      $q->bindParam(":estado", $estado, PDO::PARAM_INT);
+      $q->execute();
+      $rows = $q->fetchAll();
+      return $rows;
+    } catch (PDOException $e) {
+      error_log($e->getMessage());
+      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+    }
+  }
+
+  public function insert($datos) {
+    error_log('insert orden');
+    try {
+      $sql = "INSERT INTO orden (codcli,codtec,marca,modelo,imei,observ,fecing,estado)"
+              . " VALUES (:codcli, :codtec, :marca, :modelo, :imei, :observ, :fecing, :estado)";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bindValue(':codcli', $datos['clicod'], PDO::PARAM_STR);
+      $stmt->bindValue(':codtec', $datos['teccod'], PDO::PARAM_STR);
+      $stmt->bindValue(':marca', $datos['marca'], PDO::PARAM_STR);
+      $stmt->bindValue(':modelo', $datos['modelo'], PDO::PARAM_STR);
+      $stmt->bindValue(':imei', $datos['imei'], PDO::PARAM_STR);
+      $stmt->bindValue(':observ', $datos['observ'], PDO::PARAM_STR);
+      $stmt->bindValue(':fecing', $datos['fecha'], PDO::PARAM_STR);
+      $stmt->bindValue(':estado', '0', PDO::PARAM_STR);
+      $stmt->execute();
+      return true;
+    } catch (PDOException $e) {
+      error_log($e->getMessage());
+      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+    }
+    return false;
+  }
+}
