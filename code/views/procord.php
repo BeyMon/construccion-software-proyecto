@@ -6,7 +6,7 @@ GenFunc::logSys("(proc orden) I:Ingreso en opcion");
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-  <!-- Content Header (Page header) -->
+  <!-- Content Header -->
   <section class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
@@ -20,20 +20,20 @@ GenFunc::logSys("(proc orden) I:Ingreso en opcion");
           </ol>
         </div>
       </div>
-    </div><!-- /.container-fluid -->
+    </div>
   </section>
+
+  <!-- Tabla de órdenes -->
   <section class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Lista de Ordenes Activas</h3>
-
+              <h3 class="card-title">Lista de Órdenes Activas</h3>
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
+                  <input type="text" name="table_search" class="form-control float-right" placeholder="Buscar">
                   <div class="input-group-append">
                     <button type="submit" class="btn btn-default">
                       <i class="fas fa-search"></i>
@@ -42,55 +42,117 @@ GenFunc::logSys("(proc orden) I:Ingreso en opcion");
                 </div>
               </div>
             </div>
-            <!-- /.card-header -->
+
+            <!-- Tabla -->
             <div class="card-body table-responsive p-0">
               <table class="table table-hover text-nowrap">
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Date</th>
-                    <th>User</th>
-                    <th>Status</th>
-                    <th>Reason</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Modelo</th>
+                    <th>Marca</th>
+                    <th>IMEI</th>
+                    <th>Problema</th>
+                    <th>Técnico</th>
+                    <th>Acción</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>183</td>
-                    <td>John Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-success">Approved</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  </tr>
-                  <tr>
-                    <td>219</td>
-                    <td>Alexander Pierce</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-warning">Pending</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  </tr>
-                  <tr>
-                    <td>657</td>
-                    <td>Bob Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-primary">Approved</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  </tr>
-                  <tr>
-                    <td>175</td>
-                    <td>Mike Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="tag tag-danger">Denied</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  </tr>
+                <tbody id="tabla-ordenes">
+                  <!-- Se llenará dinámicamente -->
                 </tbody>
               </table>
             </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
+        </div>
+      </div>
+
+      <!-- Detalle que se muestra solo si se acepta -->
+      <div id="detalle-orden" style="display:none;" class="card">
+        <div class="card-header bg-info">
+          <h3 class="card-title">Detalle de la Orden de Trabajo</h3>
+        </div>
+        <div class="card-body">
+          <p><strong>ID:</strong> <span id="id"></span></p>
+          <p><strong>Cliente:</strong> <span id="cliente"></span></p>
+          <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+          <p><strong>Modelo:</strong> <span id="modelo"></span></p>
+          <p><strong>Marca:</strong> <span id="marca"></span></p>
+          <p><strong>IMEI:</strong> <span id="imei"></span></p>
+          <p><strong>Problema reportado:</strong> <span id="problema"></span></p>
+          <p><strong>Técnico asignado:</strong> <span id="tecnico"></span></p>
+          <p><strong>Estado:</strong> <span id="estado"></span></p>
+
+          <button class="btn btn-primary" onclick="abrirFormulario()">Registrar acciones</button>
         </div>
       </div>
     </div>
   </section>
 </div>
+
+<!-- JavaScript -->
+<script>
+  function cargaProcord() {
+    fetch('/cnt/OrdenCnt.php/act')
+            .then(response => response.json())
+            .then(resdata => {
+              if (resdata.data) {
+                console.log(resdata.data);
+                const tbody = document.getElementById('tabla-ordenes');
+                tbody.innerHTML = '';
+
+                resdata.data.forEach(orden => {
+                  const tr = document.createElement('tr');
+                  tr.innerHTML = `
+            <td>${orden.id}</td>
+            <td>${orden.cliente}</td>
+            <td>${orden.fecing}</td>
+            <td>${orden.modelo}</td>
+            <td>${orden.marca}</td>
+            <td>${orden.imei}</td>
+            <td>${orden.problema}</td>
+            <td>${orden.tecnico}</td>
+            <td>
+              <button class="btn btn-success btn-sm" onclick="procesarOrden(this, 'aceptado')">Aceptar</button>
+              <button class="btn btn-danger btn-sm" onclick="procesarOrden(this, 'descartado')">Descartar</button>
+            </td>
+          `;
+                  tbody.appendChild(tr);
+                });
+              } else {
+                console.log(resdata.err);
+              }
+            })
+            .catch(error => {
+              console.error('Error al cargar las órdenes activas:', error);
+            });
+  }
+
+  function procesarOrden(button, estado) {
+    const row = button.closest('tr');
+    const columnas = row.querySelectorAll('td');
+
+    if (estado === 'aceptado') {
+      document.getElementById('id').textContent = columnas[0].textContent;
+      document.getElementById('cliente').textContent = columnas[1].textContent;
+      document.getElementById('fecha').textContent = columnas[2].textContent;
+      document.getElementById('modelo').textContent = columnas[3].textContent;
+      document.getElementById('marca').textContent = columnas[4].textContent;
+      document.getElementById('imei').textContent = columnas[5].textContent;
+      document.getElementById('problema').textContent = columnas[6].textContent;
+      document.getElementById('tecnico').textContent = columnas[7].textContent;
+      document.getElementById('estado').textContent = "Aceptado";
+
+      document.getElementById('detalle-orden').style.display = 'block';
+    } else {
+      alert("La orden fue descartada.");
+      document.getElementById('detalle-orden').style.display = 'none';
+    }
+  }
+
+  function abrirFormulario() {
+    alert("Aquí cargarías un formulario con observaciones, repuestos o servicios.");
+    // Ejemplo: window.location.href = 'detalle_orden.php?id=' + document.getElementById('id').textContent;
+  }
+</script>

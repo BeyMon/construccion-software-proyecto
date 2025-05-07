@@ -51,13 +51,16 @@ GenFunc::logSys("(servicios) I:Ingreso en opcion");
           url: "/cnt/ServiciosCnt.php",
           data: filter,
           dataType: "json"
-        })
-                .done(function (data) {
-                  console.log('loadData – datos recibidos:', data);
-                })
-                .fail(function (jqXHR, status, err) {
-                  console.error('loadData – error:', status, err);
-                });
+        }).then(function (response) {
+          if (response.err && response.err !== 0) {
+            console.error("Error del servidor:", response.err);
+            return []; // Devuelve un array vacío a jsGrid en caso de error
+          }
+          return response.data; // Devuelve los datos reales a jsGrid
+        }).catch(function (jqXHR, status, err) {
+          console.error('loadData – error:', status, err);
+          return []; // jsGrid requiere que se devuelva un array
+        });
       },
 
       // Inserta nuevo registro (CREATE)
@@ -67,6 +70,15 @@ GenFunc::logSys("(servicios) I:Ingreso en opcion");
           url: "/cnt/ServiciosCnt.php",
           contentType: "application/json",
           data: JSON.stringify(item)
+        }).then(function (response) {
+          if (response.err && response.err !== 0) {
+            alert("Error al insertar: " + response.err.msg);
+            return $.Deferred().reject(); // Detiene la inserción
+          }
+          return response.data;
+        }).catch(function (jqXHR, status, err) {
+          console.error("insertItem – error:", status, err);
+          return $.Deferred().reject();
         });
       },
 
@@ -77,6 +89,15 @@ GenFunc::logSys("(servicios) I:Ingreso en opcion");
           url: "/cnt/ServiciosCnt.php",
           contentType: "application/json",
           data: JSON.stringify(item)
+        }).then(function (response) {
+          if (response.err && response.err !== 0) {
+            alert("Error al actualizar: " + response.err.msg);
+            return $.Deferred().reject();
+          }
+          return response.data;
+        }).catch(function (jqXHR, status, err) {
+          console.error("updateItem – error:", status, err);
+          return $.Deferred().reject();
         });
       }
     };
@@ -114,8 +135,13 @@ GenFunc::logSys("(servicios) I:Ingreso en opcion");
             // Eliminación manual usando tu controller
             $.ajax({
               type: "DELETE",
-              url: "/cnt/ServiciosCnt.php/" + args.item.id
-            }).done(function () {
+              url: "/cnt/ServiciosCnt.php/" + args.item.id,
+              dataType: "json"
+            }).done(function (response) {
+              if (response.err && response.err !== 0) {
+                Swal.fire('Error', response.err.msg, 'error');
+                return;
+              }
               $("#jsgServicios").jsGrid("loadData");
               Swal.fire('Eliminado', 'El servicio ha sido eliminado.', 'success');
             }).fail(function () {

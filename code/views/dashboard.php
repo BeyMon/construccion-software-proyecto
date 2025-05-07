@@ -337,8 +337,12 @@ GenFunc::logSys("(dashboard) I:Ingreso en opcion");
     fetch(url)
             .then(response => response.json())
             .then(data => {
-              console.log(data);
-              document.getElementById(idElemento).innerHTML = data;
+              if (data) {
+                console.log(data);
+                document.getElementById(idElemento).innerHTML = data.data;
+              } else {
+                console.error(`Error al obtener ${idElemento}:`, data.err);
+              }
             })
             .catch(error => {
               console.error(`Error al obtener ${idElemento}:`, error);
@@ -352,7 +356,7 @@ GenFunc::logSys("(dashboard) I:Ingreso en opcion");
     new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['Ã‰xito', 'Fallo'],
+        labels: ['Exito', 'Fallo'],
         datasets: [{
             data: [reparados, fallidos],
             backgroundColor: ['#4CAF50', '#F44336']

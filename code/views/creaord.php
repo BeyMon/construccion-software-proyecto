@@ -128,99 +128,7 @@ GenFunc::logSys("(crea orden) I:Ingreso en opcion");
     </div>
   </section>
 </div>
-
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('ordForm');
-    const campos = ['cliente', 'tecnico', 'fecha', 'marca', 'modelo', 'imei', 'observacion'];
-
-    // Remueve error al escribir
-    campos.forEach(id => {
-      const input = document.getElementById(id);
-      input.addEventListener('input', () => {
-        if (input.value.trim()) {
-          input.classList.remove('is-invalid');
-          $(input).tooltip('dispose');
-        }
-      });
-    });
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      let valid = true;
-
-      // Validación de campos vacíos
-      campos.forEach(id => {
-        const input = document.getElementById(id);
-        input.classList.remove('is-invalid');
-        input.removeAttribute('title');
-
-        if (!input.value.trim()) {
-          input.classList.add('is-invalid');
-          input.setAttribute('title', 'Este campo es obligatorio');
-          $(input).tooltip({trigger: 'manual', placement: 'top'}).tooltip('show');
-          valid = false;
-        } else {
-          $(input).tooltip('dispose');
-        }
-      });
-
-      if (!valid) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Campos obligatorios',
-          text: 'Por favor completa todos los campos requeridos.',
-          timer: 3000
-        });
-        return;
-      }
-
-      // Recolectar datos y enviar
-      const formData = new FormData(this);
-      const data = Object.fromEntries(formData.entries());
-
-      try {
-        const response = await fetch('/controladores/orden.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-
-        const result = await response.json();
-
-        if (result.success) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Orden guardada',
-            text: 'Se ha registrado correctamente.',
-            timer: 2500
-          });
-          this.reset();
-          $('.select2').val(null).trigger('change');
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error al guardar',
-            text: 'No se pudo registrar la orden.'
-          });
-        }
-      } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error de red',
-          text: 'No se pudo conectar al servidor.'
-        });
-        console.error(error);
-      }
-    });
-  });
-</script>
-
-<script>
-
   function cargaOrden() {
     const form = document.getElementById('ordForm');
     const campos = ['cliente', 'tecnico', 'marca', 'modelo', 'imei', 'observacion'];
@@ -291,7 +199,7 @@ GenFunc::logSys("(crea orden) I:Ingreso en opcion");
 
         const result = await response.json();
 
-        if (result.success) {
+        if (result.data) {
           Swal.fire({
             icon: 'success',
             title: 'Orden guardada',
@@ -300,12 +208,20 @@ GenFunc::logSys("(crea orden) I:Ingreso en opcion");
           });
           form.reset();
           $('.select2').val(null).trigger('change');
-        } else {
+        } else if (result.err) {
           Swal.fire({
             icon: 'error',
             title: 'Error al guardar',
-            text: result.error || 'No se pudo registrar la orden.'
+            text: result.err.msg || 'No se pudo registrar la orden.'
           });
+          console.error('Error interno:', result.err);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Respuesta inválida',
+            text: 'El servidor no devolvió un formato esperado.'
+          });
+          console.error('Respuesta inesperada:', result);
         }
 
       } catch (error) {
@@ -332,52 +248,62 @@ GenFunc::logSys("(crea orden) I:Ingreso en opcion");
     });
 
     $('#cliente').select2({
-
       minimumInputLength: 1,
       language: "es",
-
       allowClear: true,
       placeholder: 'Seleccione un cliente',
       ajax: {
         url: '/cnt/ClientesCnt.php/lista',
         dataType: 'json',
         delay: 250,
-        processResults: function (data) {
-          return {
-            results: data.map(function (cliente) {
-              return {
-                id: cliente.id,
-                text: cliente.nombre
-              };
-            })
-          };
+        processResults: function (resdata) {
+          if (resdata && resdata.data && Array.isArray(resdata.data)) {
+            return {
+              results: resdata.data.map(function (cliente) {
+                return {
+                  id: cliente.id,
+                  text: cliente.nombre
+                };
+              })
+            };
+          } else {
+            // Manejo en caso de error inesperado en estructura
+            console.error("Respuesta no válida en select2:", resdata.err);
+            return {results: []};
+          }
         },
         cache: true
       },
-      minimumInputLength: 1,
       width: '100%'
     });
 
     $('#tecnico').select2({
+      minimumInputLength: 1,
+      language: "es",
       allowClear: true,
       placeholder: 'Seleccione un tecnivo',
       ajax: {
         url: '/cnt/TecnicosCnt.php/lista',
         dataType: 'json',
         delay: 250,
-        processResults: function (data) {
-          return {
-            results: data.map(function (tec) {
-              return {
-                id: tec.id,
-                text: tec.nombre
-              };
-            })
-          };
+        processResults: function (resdata) {
+          if (resdata && resdata.data && Array.isArray(resdata.data)) {
+            return {
+              results: resdata.data.map(function (tec) {
+                return {
+                  id: tec.id,
+                  text: tec.nombre
+                };
+              })
+            };
+          } else {
+            // Manejo en caso de error inesperado en estructura
+            console.error("Respuesta no válida en select2:", resdata.err);
+            return {results: []};
+          }
         },
         cache: true
       },
-      minimumInputLength: 1,
       width: '100%'
     });
 
