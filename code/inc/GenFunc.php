@@ -1,5 +1,6 @@
 <?php
 
+require_once 'AppException.php';
 /*
  * Fuciones generales
  *
@@ -57,48 +58,56 @@ class GenFunc {
    * return boolean
    */
 
-  public static function checkUser($db, string $userid, string $pass) {
+  public static function checkUser($db, string $userid, string $pass): bool {
     try {
+      self::logSys("(" . __FUNCTION__ . ") I:Verifica Ingreso");
+
       $login = $db->checkLogin($userid, $pass);
 
-      self::logSys("(" . __FUNCTION__ . ") I:Verifica Ingreso");
-      // Comprobar si el resultado de la verificación es un array (existencia del usuario)
-      if (is_array($login)) {
-        // Verificar si el array está vacío (usuario no encontrado)
-        if (empty($login)) {
-          self::logSys("(" . __FUNCTION__ . ") W:Acceso Denegado: " . ErrCod::E104);
-          $response["code"] = CODE401;
-          $response["msg"] = "Error E104: " . ErrCod::E104;
-          echo json_encode($response);
-          return false;
-        } else {
-          // Verificar la contraseña
-          error_log($pass);
-          if (!password_verify($pass, $login['password'])) {
-            self::logSys("(" . __FUNCTION__ . ") W:Acceso Denegado: " . ErrCod::E105);
-            $response["code"] = CODE401;
-            $response["msg"] = "Error E105: " . ErrCod::E105;
-            echo json_encode($response);
-            return false;
-          }
-        }
-        // Si la validación es exitosa, devolver true
-        return true;
-      } else {
+      // Validación de respuesta
+      if (!is_array($login)) {
         self::logSys("(" . __FUNCTION__ . ") E:Acceso Denegado: " . ErrCod::E103);
-        $response["code"] = CODE404;
-        $response["msg"] = "Error E103: " . ErrCod::E103;
-        echo json_encode($response);
-        return false;
+        throw new AppException('E103', 404);
       }
+
+      if (empty($login)) {
+        self::logSys("(" . __FUNCTION__ . ") W:Acceso Denegado: " . ErrCod::E104);
+        throw new AppException('E104', 401);
+      }
+
+      // Verificación de contraseña
+      if (!password_verify($pass, $login['password'])) {
+        self::logSys("(" . __FUNCTION__ . ") W:Acceso Denegado: " . ErrCod::E105);
+        throw new AppException('E105', 401);
+      }
+
+      return true;
+    } catch (AppException $ae) {
+      // Re-lanzar para que sea atrapado en login.php
+      throw $ae;
     } catch (Exception $e) {
-      error_log($e->getMessage());
       self::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
-      $response["code"] = CODE400;
-      $response["msg"] = $e->getMessage();
-      $response["code_error"] = $e->getCode();
-      echo json_encode($response);
+      throw new AppException($e->getMessage(), 400, $e);
     }
+  }
+
+  public static function sendJsonResponse($params) {
+    header('Content-Type: application/json');
+
+    if (isset($params['data']) && $params['data']) :
+      $response = ['data' => $params['data'], 'err' => 0];
+    else:
+      $response = [
+          'err' => [
+              'code' => $params['code'],
+              'msg' => $params['msg'],
+              'code_error' => $params['code_error']
+          ]
+      ];
+    endif;
+
+    echo json_encode($response);
+    exit;
   }
 
   /*
