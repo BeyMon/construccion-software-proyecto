@@ -8,7 +8,7 @@ include_once dirname(__FILE__) . '/../inc/ErrCod.php';
 require_once dirname(__FILE__) . '/../inc/GenFunc.php';
 require_once dirname(__FILE__) . '/../inc/DBHandler.php';
 include dirname(__FILE__) . "/../models/Orden.php";
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 session_start();
 $dbcon = \GenFunc::dbConnect();
 $orden = new Orden($dbcon);
@@ -24,20 +24,23 @@ switch ($method) {
     if (isset($request[0])) {
       switch ($request[0]) {
         case 'act' :
+          // Activos para tecnico
           $list = $orden->getAll(Orden::ACTIVO);
-          echo json_encode($list);
+          GenFunc::sendJsonResponse(['data' => $list]);
           break;
         case 'fac' :
+          // Activos para facturar
           $list = $orden->getAll();
-          echo json_encode($list);
+          GenFunc::sendJsonResponse(['data' => $list]);
           break;
         case 'lista' :
+          // Combo
           $list = $orden->getSelectOptions();
-          echo json_encode($list);
+          GenFunc::sendJsonResponse(['data' => $list]);
           break;
         case 'count' :
           $recnum = $orden->getCount();
-          echo $recnum;
+          GenFunc::sendJsonResponse(['data' => $recnum]);
           break;
       }
       break;
@@ -65,9 +68,11 @@ switch ($method) {
     // Validación de campos
     foreach ($requiredFields as $field) {
       if (empty($input[$field])) {
-        http_response_code(400);
-        echo json_encode(['success' => false, 'error' => "El campo '$field' es obligatorio"]);
-        exit;
+        GenFunc::sendJsonResponse([
+            'code' => 400,
+            'msg' => "El campo '$field' es obligatorio",
+            'code_error' => 'E151'
+        ]);
       }
     }
 
@@ -76,34 +81,29 @@ switch ($method) {
     $ok = $orden->insert($input);
 
     if ($ok) {
-      http_response_code(201);
-      echo json_encode(['success' => true]);
+      GenFunc::sendJsonResponse(['data' => 1]);
     } else {
-      http_response_code(500);
-      echo json_encode(['success' => false, 'error' => 'Error al insertar la orden']);
+      throw new AppException('E206', 500);
     }
     break;
 
-  case 'PUT':
-    error_log('edita cliente');
-    $ok = $orden->update($input);
-    http_response_code(201);
-    echo json_encode(['success' => true]);
-    break;
-  case 'DELETE':
-    if (!$id) {
-      http_response_code(400);
-      echo json_encode(['error' => 'Falta el ID para eliminar']);
-      break;
-    }
-    // Eliminar cliente
-    $ok = $orden->remove($id);
-    http_response_code(201);
-    echo json_encode(['success' => true]);
-    break;
+//  case 'PUT':
+//    error_log('edita cliente');
+//    $ok = $orden->update($input);
+//      GenFunc::sendJsonResponse(['data' => 1]);
+//    break;
+//  case 'DELETE':
+//    if (!$id) {
+//      http_response_code(400);
+//      echo json_encode(['error' => 'Falta el ID para eliminar']);
+//      break;
+//    }
+//    // Eliminar
+//    $ok = $orden->remove($id);
+//      GenFunc::sendJsonResponse(['data' => 1]);
+//    break;
   default:
-    http_response_code(405);
-    echo json_encode(['error' => 'Método no permitido']);
+    GenFunc::sendJsonResponse(['code' => 405, 'msg' => Errcod::E150]);
     break;
 }
 

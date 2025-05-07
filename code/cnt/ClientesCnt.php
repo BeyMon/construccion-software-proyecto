@@ -8,7 +8,7 @@ include_once dirname(__FILE__) . '/../inc/ErrCod.php';
 require_once dirname(__FILE__) . '/../inc/GenFunc.php';
 require_once dirname(__FILE__) . '/../inc/DBHandler.php';
 include dirname(__FILE__) . "/../models/Cliente.php";
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 session_start();
 $dbcon = \GenFunc::dbConnect();
 $cliente = new Cliente($dbcon);
@@ -24,57 +24,50 @@ switch ($method) {
     if (isset($request[0]) && $request[0] === 'lista') {
       GenFunc::logSys("(ClienteCnt) I:Lista de datos");
       $list = $cliente->getSelectOptions();
-      echo json_encode($list);
+      GenFunc::sendJsonResponse(['data' => $list]);
       break;
     }
     if (isset($request[0]) && $request[0] === 'count') {
       GenFunc::logSys("(ClienteCnt) I:Contador de registros");
       $recnum = $cliente->getCount();
-      echo $recnum;
+      GenFunc::sendJsonResponse(['data' => $recnum]);
       break;
     }
     if ($id) {
       // Obtener un cliente
       $result = $cliente->getById($id);
       if ($result) {
-        echo json_encode($result);
+        GenFunc::sendJsonResponse(['data' => $result]);
       } else {
-        http_response_code(404);
-        echo json_encode(['error' => 'Cliente no encontrado']);
+        GenFunc::sendJsonResponse(['code' => 400, 'msg' => ErrCod::E200]);
       }
     } else {
       // Listar todos (o implementar paginación si quieres)
       $all = $cliente->getAll();
-      echo json_encode($all);
+      GenFunc::sendJsonResponse(['data' => $all]);
     }
     break;
   case 'POST':
     // Crear nuevo cliente
-    error_log('nuevo cliente');
     $ok = $cliente->insert($input);
-    http_response_code(201);
-    echo json_encode(['success' => true]);
+    GenFunc::sendJsonResponse(['data' => 1]);
     break;
   case 'PUT':
-    error_log('edita cliente');
+    // Edita cliente
     $ok = $cliente->update($input);
-    http_response_code(201);
-    echo json_encode(['success' => true]);
+    GenFunc::sendJsonResponse(['data' => 1]);
     break;
   case 'DELETE':
     if (!$id) {
-      http_response_code(400);
-      echo json_encode(['error' => 'Falta el ID para eliminar']);
+      GenFunc::sendJsonResponse(['code' => 400, 'msg' => Errcod::E201]);
       break;
     }
     // Eliminar cliente
     $ok = $cliente->remove($id);
-    http_response_code(201);
-    echo json_encode(['success' => true]);
+    GenFunc::sendJsonResponse(['data' => 1]);
     break;
   default:
-    http_response_code(405);
-    echo json_encode(['error' => 'Método no permitido']);
+    GenFunc::sendJsonResponse(['code' => 405, 'msg' => Errcod::E150]);
     break;
 }
 
