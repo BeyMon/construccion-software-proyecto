@@ -13,6 +13,8 @@ class ErrCod {
   const E110 = 'Token no se pudo generar.';
   const E150 = 'Método no permitido';
   const E151 = 'El Campo es obligatorio';
+  const E170 = 'Error inesperado Model PDO';
+  const E171 = 'Error inesperado Model Exception';
   const E200 = 'Cliente no encontrado.';
   const E201 = 'Falta el ID para eliminar';
   const E203 = 'Técnico no encontrado';
