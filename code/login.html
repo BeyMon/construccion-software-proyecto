@@ -20,7 +20,6 @@
     <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Sweetalert -->
     <script src="/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-    <script src="js/login2.js"></script>
   </head>
 
   <body>
@@ -65,36 +64,38 @@
         try {
           const resp = await fetch('login.php', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ uid, pwd })
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({uid, pwd})
           });
-          
+
           if (!resp.ok)
             // No hubo respuesta
             throw new Error('Error en petición: ' + resp.status);
-          const data = await resp.json();
+          const resdata = await resp.json();
           
-          if (data.code === 200 && data.data && data.data.token) {
+          if (resdata.err) {            
+            console.log(resdata.err);
+            errorDiv.textContent = resdata.err.msg || 'Credenciales inválidas';
+          } else { 
+            console.log('si '  + resdata.data);
+            if (resdata.data && resdata.data.token) {
             // Guardar token y expiracion            
-            localStorage.setItem('auth_token', data.data.token);
-            localStorage.setItem('auth_expira', data.data.expira);
+            localStorage.setItem('auth_token', resdata.data.token);
+            localStorage.setItem('auth_expira', resdata.data.expira);
 
             // Mostrar exito
             await Swal.fire({
               icon: 'success',
               title: 'Ingreso Exitoso!',
-              text: data.msg,
+              text: 'Bienvenido',
               timer: 1500,
               showConfirmButton: false
             });
 
             // Redirigir a pantalla principal
             window.location.href = 'index.php';
-          }
-          else {            
-            // Muestra mensaje de error 
-            errorDiv.textContent = data.msg || 'Credenciales inválidas';
-          }
+            }
+        }
         } catch (err) {
           console.error(err);
           errorDiv.textContent = 'Error de conexión, inténtalo más tarde.';

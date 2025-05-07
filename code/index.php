@@ -34,7 +34,7 @@ $_SESSION["opcmnu"] = "index";
       // Funcion de carga de seccion
       // param section string  Nombre de la seccion
       function loadSection(section) {
-        // verifica token si aun es valido
+        // verifica token si aun es valido;
         const isAuthenticated = checkAuth();
         if (!isAuthenticated) {
           return;
@@ -60,8 +60,8 @@ $_SESSION["opcmnu"] = "index";
               case 'tecnicos':
                 cargaTecnicos();
                 break;
-              case 'ordtec':
-                cargaOrdtec();
+              case 'procord':
+                cargaProcord();
                 break;
               case 'ordfac':
                 cargaOrdfac();
