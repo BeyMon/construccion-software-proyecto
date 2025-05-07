@@ -62,7 +62,7 @@ GenFunc::logSys("(integra) I:Ingreso en opcion");
                     <h2 class="lead"><b>Guevara Bustos Yandri David</b></h2>
                     <ul class="ml-4 mb-0 fa-ul text-muted">
                       <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Email: yandridavid@hotmail.com</li>
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Grupo C: ConstrucciÃ²n de Software</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Grupo C: Construcción de Software</li>
                       <li class="small"><span class="fa-li"><i class="fas fa-lg fa-info"></i></span> Grupo G05 - Aplicaciones Web</li>
                     </ul>
                   </div>
@@ -83,8 +83,8 @@ GenFunc::logSys("(integra) I:Ingreso en opcion");
                   <div class="col-7">
                     <h2 class="lead"><b>Delgado Piguave Anthony Paul</b></h2>
                     <ul class="ml-4 mb-0 fa-ul text-muted">
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Email: yandridavid@hotmail.com</li>
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Grupo C: ConstrucciÃ²n de Software</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Email: anthony.delgadopig@ug.edu.ec</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Grupo C: Construcción de Software</li>
                       <li class="small"><span class="fa-li"><i class="fas fa-lg fa-info"></i></span> Grupo G04 - Aplicaciones Web</li>
                     </ul>
                   </div>
@@ -103,11 +103,12 @@ GenFunc::logSys("(integra) I:Ingreso en opcion");
               <div class="card-body pt-0">
                 <div class="row">
                   <div class="col-7">
-                    <h2 class="lead"><b>IÃ‘IGA ALVARADO STEVEN JOSUE</b></h2>
-                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                    <h2 class="lead"><b>IÑIGA ALVARADO STEVEN JOSUE</b></h2>
+                 
                     <ul class="ml-4 mb-0 fa-ul text-muted">
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Email: steven.inigaa@ug.edu.ec</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Grupo C: Construcción de Software</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-info"></i></span> Grupo G05 - Aplicaciones Web</li>
                     </ul>
                   </div>
                   <div class="col-5 text-center">
@@ -126,13 +127,14 @@ GenFunc::logSys("(integra) I:Ingreso en opcion");
                 <div class="row">
                   <div class="col-7">
                     <h2 class="lead"><b>MITE SOLORZANO ALAN OMAR </b></h2>
-                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                 
                     <ul class="ml-4 mb-0 fa-ul text-muted">
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                       <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Email: alan.mitesol@ug.edu.ec</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Grupo C: Construcción de Software</li>
                     </ul>
                   </div>
                   <div class="col-5 text-center">
-                    <img src="" alt="user-avatar" class="img-circle img-fluid">
+                    <img src="/img/Omar.jpeg" alt="user-avatar" class="img-circle img-fluid">
                   </div>
                 </div>
               </div>
@@ -147,10 +149,9 @@ GenFunc::logSys("(integra) I:Ingreso en opcion");
                 <div class="row">
                   <div class="col-7">
                     <h2 class="lead"><b>CAGUA LUCIO DEREK GEANPIERE</b></h2>
-                    <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
                     <ul class="ml-4 mb-0 fa-ul text-muted">
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
-                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Emai: derek.cagualuc@ug.edu.ec</li>
+                      <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Grupo C: Construcción de Software</li>
                     </ul>
                   </div>
                   <div class="col-5 text-center">
