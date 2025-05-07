@@ -41,10 +41,10 @@ class Servicio {
       return $rows;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -57,10 +57,10 @@ class Servicio {
       return $count;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -74,10 +74,10 @@ class Servicio {
       return $rows;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -95,10 +95,10 @@ class Servicio {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }
@@ -120,10 +120,10 @@ class Servicio {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }
@@ -140,10 +140,10 @@ class Servicio {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }

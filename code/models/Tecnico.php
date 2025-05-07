@@ -42,10 +42,10 @@ class Tecnico {
       return $rows;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -58,10 +58,10 @@ class Tecnico {
       return $count;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -73,10 +73,10 @@ class Tecnico {
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -90,10 +90,10 @@ class Tecnico {
       return $rows;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -113,10 +113,10 @@ class Tecnico {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }
@@ -140,10 +140,10 @@ class Tecnico {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }
@@ -160,10 +160,10 @@ class Tecnico {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }

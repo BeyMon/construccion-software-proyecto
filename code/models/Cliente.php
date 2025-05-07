@@ -42,10 +42,10 @@ class Cliente {
       return $rows;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -58,10 +58,10 @@ class Cliente {
       return $count;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -73,16 +73,16 @@ class Cliente {
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
   public function getAll() {
     try {
-      error_log('clientes getall');
+      error_log('clientes getall' . Errcod::E103);
       $sql = "SELECT * FROM cliente where estado=0";
       $q = $this->db->prepare($sql);
       $q->execute();
@@ -90,10 +90,10 @@ class Cliente {
       return $rows;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
   }
 
@@ -113,10 +113,10 @@ class Cliente {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }
@@ -141,10 +141,10 @@ class Cliente {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }
@@ -161,10 +161,10 @@ class Cliente {
       return true;
     } catch (PDOException $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
     } catch (Exception $e) {
       error_log($e->getMessage());
-      GenFunc::logSys("(" . __FUNCTION__ . ") E:Error " . $e->getCode() . ": " . $e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
     }
     return false;
   }
