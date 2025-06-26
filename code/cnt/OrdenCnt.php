@@ -25,12 +25,12 @@ switch ($method) {
       switch ($request[0]) {
         case 'act' :
           // Activos para tecnico
-          $list = $orden->getAll(Orden::ACTIVO);
+          $list = $orden->getOrdenByTec($request[1]);
           GenFunc::sendJsonResponse(['data' => $list]);
           break;
         case 'fac' :
           // Activos para facturar
-          $list = $orden->getAll();
+          $list = $orden->getAll(Orden::CERRADO);
           GenFunc::sendJsonResponse(['data' => $list]);
           break;
         case 'lista' :
