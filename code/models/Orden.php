@@ -78,7 +78,7 @@ class Orden {
     }
   }
 
-  public function getOpenByTec($codtec) {
+  public function getOrdenByTec($codtec) {
     try {
       error_log('ordenes abiertas de un tecnico especifico');
       $sql = "SELECT * FROM orden where estado=0 and codtec=:codtec";
