@@ -78,6 +78,24 @@ class Orden {
     }
   }
 
+  public function getOpenByTec($codtec) {
+    try {
+      error_log('ordenes abiertas de un tecnico especifico');
+      $sql = "SELECT * FROM orden where estado=0 and codtec=:codtec";
+      $q = $this->db->prepare($sql);
+      $q->bindParam(":tec", $codtec, PDO::PARAM_INT);
+      $q->execute();
+      $rows = $q->fetchAll();
+      return $rows;
+    } catch (PDOException $e) {
+      error_log($e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
+    }
+  }
+
   public function insert($datos) {
     error_log('insert orden');
     try {
