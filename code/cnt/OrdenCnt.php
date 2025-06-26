@@ -23,22 +23,22 @@ switch ($method) {
   case 'GET':
     if (isset($request[0])) {
       switch ($request[0]) {
-        case 'act' :
+        case 'act':
           // Activos para tecnico
           $list = $orden->getOrdenByTec($request[1]);
           GenFunc::sendJsonResponse(['data' => $list]);
           break;
-        case 'fac' :
+        case 'fac':
           // Activos para facturar
           $list = $orden->getAll(Orden::CERRADO);
           GenFunc::sendJsonResponse(['data' => $list]);
           break;
-        case 'lista' :
+        case 'lista':
           // Combo
           $list = $orden->getSelectOptions();
           GenFunc::sendJsonResponse(['data' => $list]);
           break;
-        case 'count' :
+        case 'count':
           $recnum = $orden->getCount();
           GenFunc::sendJsonResponse(['data' => $recnum]);
           break;
@@ -69,9 +69,9 @@ switch ($method) {
     foreach ($requiredFields as $field) {
       if (empty($input[$field])) {
         GenFunc::sendJsonResponse([
-            'code' => 400,
-            'msg' => "El campo '$field' es obligatorio",
-            'code_error' => 'E151'
+          'code' => 400,
+          'msg' => "El campo '$field' es obligatorio",
+          'code_error' => 'E151',
         ]);
       }
     }
@@ -87,7 +87,7 @@ switch ($method) {
     }
     break;
 
-//  case 'PUT':
+  //  case 'PUT':
 //    error_log('edita cliente');
 //    $ok = $orden->update($input);
 //      GenFunc::sendJsonResponse(['data' => 1]);
@@ -106,4 +106,3 @@ switch ($method) {
     GenFunc::sendJsonResponse(['code' => 405, 'msg' => Errcod::E150]);
     break;
 }
-

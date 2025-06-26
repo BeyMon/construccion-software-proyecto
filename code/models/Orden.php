@@ -5,7 +5,8 @@
  *
  * @author Galo Izquierdo
  */
-class Orden {
+class Orden
+{
 
   protected $db;
 
@@ -13,7 +14,7 @@ class Orden {
   const FACTURADO = 5;
   const CERRADO = 3;
 
-//  public $id;
+  //  public $id;
 //  public $codcli;
 //  public $codtec;
 //  public $marca;
@@ -23,17 +24,20 @@ class Orden {
 //  public $fecfac;
 //  public $estado;
 
-  public function __construct(PDO $db) {
+  public function __construct(PDO $db)
+  {
     $this->db = $db;
   }
 
-  public function getById(string $id) {
+  public function getById(string $id)
+  {
     try {
       $sql = "SELECT * FROM orden WHERE id = :id";
       $q = $this->db->prepare($sql);
       $q->bindParam(":id", $id, PDO::PARAM_INT);
       $q->execute();
       $rows = $q->fetchAll();
+
       return $rows;
     } catch (PDOException $e) {
       error_log($e->getMessage());
@@ -44,7 +48,8 @@ class Orden {
     }
   }
 
-  public function getCount() {
+  public function getCount()
+  {
     try {
       $sql = "SELECT count(id) FROM orden";
       $q = $this->db->prepare($sql);
@@ -60,7 +65,8 @@ class Orden {
     }
   }
 
-  public function getAll($estado) {
+  public function getAll($estado)
+  {
     try {
       error_log('ordenes abiertas getall');
       $sql = "SELECT * FROM orden where estado=:estado";
@@ -78,12 +84,13 @@ class Orden {
     }
   }
 
-  public function getOrdenByTec($codtec) {
+  public function getOrdenByTec($codtec)
+  {
     try {
       error_log('ordenes abiertas de un tecnico especifico');
       $sql = "SELECT * FROM orden where estado=0 and codtec=:codtec";
       $q = $this->db->prepare($sql);
-      $q->bindParam(":tec", $codtec, PDO::PARAM_INT);
+      $q->bindParam(":codtec", $codtec, PDO::PARAM_INT);
       $q->execute();
       $rows = $q->fetchAll();
       return $rows;
@@ -96,11 +103,12 @@ class Orden {
     }
   }
 
-  public function insert($datos) {
+  public function insert($datos)
+  {
     error_log('insert orden');
     try {
       $sql = "INSERT INTO orden (codcli,codtec,marca,modelo,imei,observ,fecing,estado)"
-              . " VALUES (:codcli, :codtec, :marca, :modelo, :imei, :observ, :fecing, :estado)";
+        . " VALUES (:codcli, :codtec, :marca, :modelo, :imei, :observ, :fecing, :estado)";
       $stmt = $this->db->prepare($sql);
       $stmt->bindValue(':codcli', $datos['clicod'], PDO::PARAM_STR);
       $stmt->bindValue(':codtec', $datos['teccod'], PDO::PARAM_STR);
@@ -121,4 +129,5 @@ class Orden {
     }
     return false;
   }
+
 }

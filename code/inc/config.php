@@ -1,4 +1,5 @@
 <?php
+
 // Zona horaria local
 setlocale(LC_TIME, 'es_ES.UTF-8');
 setlocale(LC_MONETARY, 'en_US');
@@ -10,7 +11,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: X-Requested-With");
 header('Content-Type: application/json; charset=utf-8');
 header('P3P: CP="IDC DSP COR CURa ADMa OUR IND PHY ONL COM STA"');
-define('DB_HOST', '127.0.0.1');
+define('DB_HOST', 'www.ecuinfo.net');
 define('DB_USER', 'ugcs');
 define('DB_PASS', 'universidadCS2025');
 define('DB_NAME', 'ugcs');
