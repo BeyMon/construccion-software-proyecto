@@ -130,4 +130,22 @@ class Orden
     return false;
   }
 
+  public function cerrar($id)
+  {
+    try {
+      $sql = "UPDATE orden SET estado = :estado WHERE id = :id";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bindValue(':estado', self::CERRADO, PDO::PARAM_INT);
+      $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+      $stmt->execute();
+      return $stmt->rowCount() > 0;
+    } catch (PDOException $e) {
+      error_log($e->getMessage());
+      throw new AppException(ErrCod::E170, 500, $e);
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      throw new AppException(ErrCod::E171, 500, $e);
+    }
+  }
+
 }

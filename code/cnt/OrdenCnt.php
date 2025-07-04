@@ -42,6 +42,18 @@ switch ($method) {
           $recnum = $orden->getCount();
           GenFunc::sendJsonResponse(['data' => $recnum]);
           break;
+        case 'cerrar':
+          if (!isset($request[1])) {
+            GenFunc::sendJsonResponse(['code' => 400, 'msg' => 'Falta el ID de la orden', 'code_error' => 'E151']);
+          }
+          $ordenId = (int) $request[1];
+          $ok = $orden->cerrar($ordenId);
+          if ($ok) {
+            GenFunc::sendJsonResponse(['data' => 1]);
+          } else {
+            GenFunc::sendJsonResponse(['data' => 0]);
+          }
+          break;
       }
       break;
     }

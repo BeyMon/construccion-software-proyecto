@@ -10,11 +10,12 @@ date_default_timezone_set('America/Guayaquil');
  *
  * @author Galo Izquierdo
  */
-class Ordlog {
+class Ordlog
+{
 
   protected $db;
 
-//  public $id;
+  //  public $id;
 //  public $codcli;
 //  public $codtec;
 //  public $marca;
@@ -24,17 +25,20 @@ class Ordlog {
 //  public $fecfac;
 //  public $estado;
 
-  public function __construct(PDO $db) {
+  public function __construct(PDO $db)
+  {
     $this->db = $db;
   }
 
-  public function getById(string $id) {
+  public function getById(string $id)
+  {
     try {
       $sql = "SELECT * FROM ordlog WHERE id = :id";
       $q = $this->db->prepare($sql);
       $q->bindParam(":id", $id, PDO::PARAM_INT);
       $q->execute();
       $rows = $q->fetchAll();
+
       return $rows;
     } catch (PDOException $e) {
       error_log($e->getMessage());
@@ -45,7 +49,8 @@ class Ordlog {
     }
   }
 
-  public function getAll($orden) {
+  public function getAll($orden)
+  {
     try {
       error_log('ordenes log getall');
       $sql = "SELECT * FROM ordlog where ordid=:orden";
@@ -63,11 +68,12 @@ class Ordlog {
     }
   }
 
-  public function insert($orden, $tipo) {
+  public function insert($orden, $tipo)
+  {
     error_log('insert ordlog');
     try {
-      $sql = "INSERT INTO orddet (ordid,feclog,observ)"
-              . " VALUES (:ordid, :feclog, :observ)";
+      $sql = "INSERT INTO ordlog (ordid,feclog,observ)"
+        . " VALUES (:ordid, :feclog, :observ)";
       $stmt = $this->db->prepare($sql);
 
       $observ = "Se registra ingreso de ";
@@ -86,7 +92,6 @@ class Ordlog {
       $stmt->bindValue(':ordid', $orden, PDO::PARAM_STR);
       $stmt->bindValue(':feclog', $fecha, PDO::PARAM_STR);
       $stmt->bindValue(':observ', $observ, PDO::PARAM_STR);
-      $stmt->bindValue(':estado', '0', PDO::PARAM_STR);
       $stmt->execute();
       return true;
     } catch (PDOException $e) {
@@ -98,4 +103,5 @@ class Ordlog {
     }
     return false;
   }
+
 }

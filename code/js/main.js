@@ -4,11 +4,13 @@ Meses = {
   1: 'Enero', 2: 'Febrero', 3: 'Marzo',
   4: 'Abril', 5: 'Mayo', 6: 'Junio',
   7: 'Julio', 8: 'Agosto', 9: 'Septiembre',
-  10: 'Octubre', 11: 'Noviembre', 12: 'Diciembre'};
+  10: 'Octubre', 11: 'Noviembre', 12: 'Diciembre'
+};
 Dias = {
   1: 'Domingo', 2: 'Lunes', 3: 'Martes',
   4: 'Miércoles', 5: 'Jueves',
-  6: 'Viernes', 7: 'Sábado'};
+  6: 'Viernes', 7: 'Sábado'
+};
 
 $(document).ready(function () {
   var interval_Hora = setInterval(Horagm, 1000);
@@ -21,59 +23,59 @@ function twoDigitPad(num) {
 
 // Set date format
 function formatDate(date, patternStr) {
-//console.log(formatDate(new Date()));
-//console.log(formatDate(new Date(), 'dd-MMM-yyyy')); //OP's request
-//console.log(formatDate(new Date(), 'EEEE, MMMM d, yyyy HH:mm:ss.S aaa'));
-//console.log(formatDate(new Date(), 'EEE, MMM d, yyyy HH:mm'));
-//console.log(formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss.S'));
-//console.log(formatDate(new Date(), 'M/dd/yyyy h:mmaaa'));
+  //console.log(formatDate(new Date()));
+  //console.log(formatDate(new Date(), 'dd-MMM-yyyy')); //OP's request
+  //console.log(formatDate(new Date(), 'EEEE, MMMM d, yyyy HH:mm:ss.S aaa'));
+  //console.log(formatDate(new Date(), 'EEE, MMM d, yyyy HH:mm'));
+  //console.log(formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss.S'));
+  //console.log(formatDate(new Date(), 'M/dd/yyyy h:mmaaa'));
   if (!patternStr) {
     patternStr = 'M/d/yyyy';
   }
 
   let day = date.getDate(),
-          month = date.getMonth(),
-          year = date.getFullYear(),
-          hour = date.getHours(),
-          minute = date.getMinutes(),
-          second = date.getSeconds(),
-          miliseconds = date.getMilliseconds(),
-          h = hour % 12,
-          hh = twoDigitPad(h),
-          HH = twoDigitPad(hour),
-          mm = twoDigitPad(minute),
-          ss = twoDigitPad(second),
-          aaa = hour < 12 ? 'AM' : 'PM',
-          DDD = Dias[date.getDay() + 1],
-          D = DDD.substr(0, 3),
-          dd = twoDigitPad(day),
-          M = month + 1,
-          MM = twoDigitPad(M),
-          MMMM = Meses[month + 1],
-          MMM = MMMM.substr(0, 3),
-          yyyy = year + "",
-          yy = yyyy.substr(2, 2);
+    month = date.getMonth(),
+    year = date.getFullYear(),
+    hour = date.getHours(),
+    minute = date.getMinutes(),
+    second = date.getSeconds(),
+    miliseconds = date.getMilliseconds(),
+    h = hour % 12,
+    hh = twoDigitPad(h),
+    HH = twoDigitPad(hour),
+    mm = twoDigitPad(minute),
+    ss = twoDigitPad(second),
+    aaa = hour < 12 ? 'AM' : 'PM',
+    DDD = Dias[date.getDay() + 1],
+    D = DDD.substr(0, 3),
+    dd = twoDigitPad(day),
+    M = month + 1,
+    MM = twoDigitPad(M),
+    MMMM = Meses[month + 1],
+    MMM = MMMM.substr(0, 3),
+    yyyy = year + "",
+    yy = yyyy.substr(2, 2);
 
   // checks to see if month name will be used
   patternStr = patternStr
-          .replace('hh', hh).replace('h', h)
-          .replace('HH', HH).replace('H', hour)
-          .replace('mm', mm).replace('m', minute)
-          .replace('ss', ss).replace('s', second)
-          .replace('S', miliseconds)
-          .replace('dd', dd).replace('d', day)
-          .replace('DDD', DDD).replace('D', D)
-          .replace('yyyy', yyyy)
-          .replace('yy', yy)
-          .replace('aaa', aaa);
+    .replace('hh', hh).replace('h', h)
+    .replace('HH', HH).replace('H', hour)
+    .replace('mm', mm).replace('m', minute)
+    .replace('ss', ss).replace('s', second)
+    .replace('S', miliseconds)
+    .replace('dd', dd).replace('d', day)
+    .replace('DDD', DDD).replace('D', D)
+    .replace('yyyy', yyyy)
+    .replace('yy', yy)
+    .replace('aaa', aaa);
   if (patternStr.indexOf('MMM') > -1) {
     patternStr = patternStr
-            .replace('MMMM', MMMM)
-            .replace('MMM', MMM);
+      .replace('MMMM', MMMM)
+      .replace('MMM', MMM);
   } else {
     patternStr = patternStr
-            .replace('MM', MM)
-            .replace('M', M);
+      .replace('MM', MM)
+      .replace('M', M);
   }
   return patternStr;
 }
@@ -91,7 +93,7 @@ function Horagm() {
   } else {
     sfecha = fecha + ' ' + hora;
   }
-  const id_hora = document.getElementById('hora');
+  const id_hora = document.getElementById('fecha');
   const span = document.createElement('span');
   span.textContent = sfecha;
   id_hora.innerHTML = ''; // Limpiar el contenido existente
@@ -186,9 +188,9 @@ function logoutSession() {
 function ftos(valor = 0, tipo = 1, dec = 2) {
   let valdat = '';
   if (tipo === 0) {
-    valdat = new Intl.NumberFormat("en-US", {minimumFractionDigits: dec, maximumFractionDigits: dec}).format(valor);
+    valdat = new Intl.NumberFormat("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec }).format(valor);
   } else {
-    valdat = new Intl.NumberFormat("en-US", {style: "currency", currency: "USD"}).format(valor);
+    valdat = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(valor);
   }
   return valdat;
 }
@@ -264,10 +266,10 @@ function showDetailsDialog(dialogType, item, tipo, db) {
       </form>`;
 
       rules = {
-        nombre: {required: true, minlength: 3},
-        refere: {required: false},
-        costo: {required: true},
-        prcvta: {required: true}
+        nombre: { required: true, minlength: 3 },
+        refere: { required: false },
+        costo: { required: true },
+        prcvta: { required: true }
       };
       messages = {
         nombre: "Ingrese detalle del producto",
@@ -309,9 +311,9 @@ function showDetailsDialog(dialogType, item, tipo, db) {
       </form>`;
 
       rules = {
-        nombre: {required: true, minlength: 3},
-        refere: {required: false},
-        prcvta: {required: true}
+        nombre: { required: true, minlength: 3 },
+        refere: { required: false },
+        prcvta: { required: true }
       };
       messages = {
         nombre: "Ingrese detalle del servicio",
@@ -360,11 +362,11 @@ function showDetailsDialog(dialogType, item, tipo, db) {
       </form>`;
 
       rules = {
-        nombre: {required: true, minlength: 3},
-        id: {required: true, minlength: 10, maxlength: 13},
-        direcc: {required: true, minlength: 5},
-        correo: {required: true, email: true},
-        telefono: {required: true, maxlength: 10}
+        nombre: { required: true, minlength: 3 },
+        id: { required: true, minlength: 10, maxlength: 13 },
+        direcc: { required: true, minlength: 5 },
+        correo: { required: true, email: true },
+        telefono: { required: true, maxlength: 10 }
       };
       messages = {
         nombre: "Ingrese el nombre completo",
@@ -415,11 +417,11 @@ function showDetailsDialog(dialogType, item, tipo, db) {
       </form>`;
 
       rules = {
-        nombre: {required: true, minlength: 3},
-        id: {required: true, minlength: 3, maxlength: 10},
-        direcc: {required: true, minlength: 5},
-        correo: {required: true, email: true},
-        telefono: {required: true, maxlength: 10}
+        nombre: { required: true, minlength: 3 },
+        id: { required: true, minlength: 3, maxlength: 10 },
+        direcc: { required: true, minlength: 5 },
+        correo: { required: true, email: true },
+        telefono: { required: true, maxlength: 10 }
       };
       messages = {
         nombre: "Ingrese el nombre completo",
@@ -458,11 +460,11 @@ function showDetailsDialog(dialogType, item, tipo, db) {
     ],
     open: function () {
       // Desactiva los clics en la barra lateral para evitar errores de enfoque
-      $('aside.main-sidebar').css('pointer-events', 'none');  
+      $('aside.main-sidebar').css('pointer-events', 'none');
       // Genera el título con ícono y tipo de diálogo
       const icon = dialogType === "Nuevo"
-              ? '<i class="fas fa-plus-circle text-success"></i>'
-              : '<i class="fas fa-edit text-primary"></i>';
+        ? '<i class="fas fa-plus-circle text-success"></i>'
+        : '<i class="fas fa-edit text-primary"></i>';
 
       const customTitle = `${icon} ${dialogType} ${tipo.charAt(0).toUpperCase() + tipo.slice(1)}`;
 
@@ -472,34 +474,46 @@ function showDetailsDialog(dialogType, item, tipo, db) {
       $('#globalForm input[type="text"]').on('keydown', function (event) {
         const key = event.key;
         const isAllowed =
-                /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]$/.test(key) ||
-                ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(key);
+          /^[a-zA-Z0-9._,áéíóúÁÉÍÓÚñÑ ]$/.test(key) ||
+          ['Backspace', 'Delete', 'Tab', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(key);
 
         if (!isAllowed) {
           event.preventDefault();
         }
       }).on('paste', function (event) {
         const paste = (event.originalEvent || event).clipboardData.getData('text');
-        if (!/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]+$/.test(paste)) {
+        if (!/^[a-zA-Z0-9,_.áéíóúÁÉÍÓÚñÑ ]+$/.test(paste)) {
           event.preventDefault();
         }
       });
 
       // Validación para permitir solo números en campos específicos
-      $('#globalForm input.solo-numeros').on('keydown', function (event) {
-        const allowedKeys = [8, 9, 13, 27, 46, 37, 38, 39, 40];
-        if (allowedKeys.includes(event.which) || (event.ctrlKey && [65, 67, 86, 88].includes(event.which))) {
-          return;
-        }
-        if (event.which < 48 || event.which > 57) {
-          event.preventDefault();
-        }
-      }).on('paste', function (event) {
-        const paste = (event.originalEvent || event).clipboardData.getData('text');
-        if (!/^[0-9]+$/.test(paste)) {
-          event.preventDefault();
-        }
-      });
+      $('#globalForm input.solo-numeros')
+        .on('keydown', function (event) {
+          const key = event.key;
+          const ctrl = event.ctrlKey || event.metaKey;
+          console.log(key, ctrl);
+
+          // Permitir: teclas de control y navegación
+          if (
+            ['Backspace', 'Tab', 'Enter', 'Escape', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(key) ||
+            (ctrl && ['a', 'c', 'v', 'x'].includes(key.toLowerCase()))
+          ) {
+            return;
+          }
+
+          // Permitir números del 0 al 9
+          if (!/^[0-9]$/.test(key)) {
+            event.preventDefault();
+          }
+        })
+        .on('paste', function (event) {
+          const paste = (event.originalEvent || event).clipboardData.getData('text');
+          if (!/^\d+$/.test(paste)) {
+            event.preventDefault();
+          }
+        });
+
 
       // Formatea valores numéricos al salir del input
       $('#globalForm input.valores').on('blur', function () {
@@ -515,7 +529,7 @@ function showDetailsDialog(dialogType, item, tipo, db) {
     },
     close: function () {
       // Restaura los clics en la barra lateral
-      $('aside.main-sidebar').css('pointer-events', 'auto');  
+      $('aside.main-sidebar').css('pointer-events', 'auto');
       // Reinicia validaciones del formulario
       $("#globalForm").validate().resetForm();
       $("#globalForm").find(".error").removeClass("error");
@@ -544,7 +558,7 @@ function saveItem(item, tipo, isNew, db) {
   switch (tipo) {
     case "producto":
       // Actualiza los campos del objeto con los valores del formulario
-     $.extend(item, {
+      $.extend(item, {
         nombre: $("#nombre").val(),
         refere: $("#refere").val(),
         cantid: $("#cantid").val(),
