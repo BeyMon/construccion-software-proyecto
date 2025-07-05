@@ -15,7 +15,7 @@ $orden = new Orden($dbcon);
 // Lee la ruta y el método HTTP
 $method = $_SERVER['REQUEST_METHOD'];
 $request = explode('/', trim($_SERVER['PATH_INFO'] ?? '', '/'));
-$id = isset($request[0]) ? (int) $request[0] : null;
+//$id = isset($request[0]) ? (int) $request[0] : null;
 // Lee el cuerpo JSON si existe
 $input = json_decode(file_get_contents('php://input'), true);
 // CRUD según método
@@ -23,6 +23,19 @@ switch ($method) {
   case 'GET':
     if (isset($request[0])) {
       switch ($request[0]) {
+        case 'id':
+          // Obtener
+          $id = isset($request[1]) ? (int) $request[1] : null;
+          error_log('Obtener orden por ID: ' . $id);
+          $result = $orden->getById($id);
+          if ($result) {
+            echo json_encode($result);
+          }
+          else {
+            http_response_code(404);
+            echo json_encode(['error' => 'Cliente no encontrado']);
+          }
+          break;
         case 'act':
           // Activos para tecnico
           $list = $orden->getOrdenByTec($request[1]);
@@ -50,7 +63,8 @@ switch ($method) {
           $ok = $orden->cerrar($ordenId);
           if ($ok) {
             GenFunc::sendJsonResponse(['data' => 1]);
-          } else {
+          }
+          else {
             GenFunc::sendJsonResponse(['data' => 0]);
           }
           break;
@@ -58,11 +72,13 @@ switch ($method) {
       break;
     }
     if ($id) {
-      // Obtener un cliente
+      // Obtener
+      error_log('Obtener orden por ID: ' . $id);
       $result = $orden->getById($id);
       if ($result) {
         echo json_encode($result);
-      } else {
+      }
+      else {
         http_response_code(404);
         echo json_encode(['error' => 'Cliente no encontrado']);
       }
@@ -76,29 +92,26 @@ switch ($method) {
   case 'POST':
     // Crear nuevo orden
     $requiredFields = ['clicod', 'teccod', 'fecha', 'marca', 'modelo', 'imei', 'observ'];
-
     // Validación de campos
     foreach ($requiredFields as $field) {
       if (empty($input[$field])) {
         GenFunc::sendJsonResponse([
-          'code' => 400,
-          'msg' => "El campo '$field' es obligatorio",
-          'code_error' => 'E151',
+           'code' => 400,
+           'msg' => "El campo '$field' es obligatorio",
+           'code_error' => 'E151',
         ]);
       }
     }
 
     error_log('Nuevo orden recibido');
-
     $ok = $orden->insert($input);
-
     if ($ok) {
       GenFunc::sendJsonResponse(['data' => 1]);
-    } else {
+    }
+    else {
       throw new AppException('E206', 500);
     }
     break;
-
   //  case 'PUT':
 //    error_log('edita cliente');
 //    $ok = $orden->update($input);

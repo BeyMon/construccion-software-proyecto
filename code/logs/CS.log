@@ -690,3 +690,110 @@
 03 Jul 2025 22:08:35 [127.000.000.001] I:(OrddetCnt.php:45) E:GENERIC Error inesperado Model PDO
 03 Jul 2025 22:11:51 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
 03 Jul 2025 22:11:52 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 08:26:33 [127.000.000.001] I:(checkUser) I:Verifica Ingreso
+05 Jul 2025 08:26:33 [127.000.000.001] I:(login) I:Ingreso Exitoso [admin]
+05 Jul 2025 08:26:33 [127.000.000.001] I:(login) I:Genera Token
+05 Jul 2025 08:26:33 [127.000.000.001] I:(login) I:Elimina Registro Anterior
+05 Jul 2025 08:26:33 [127.000.000.001] I:(login) I:Crea Registro
+05 Jul 2025 08:26:33 [127.000.000.001] I:(login) I:Ingreso Exitoso
+05 Jul 2025 08:26:35 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 08:26:35 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 08:26:37 [127.000.000.001] I:(proc orden) I:Ingreso en opcion
+05 Jul 2025 08:26:40 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 08:26:40 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 08:26:42 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 08:26:42 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 08:26:42 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 08:26:42 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 08:32:04 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 08:32:04 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 08:32:05 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:35:43 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:35:43 [127.000.000.001] I:(OrdenCnt.php:33) E:GENERIC Error inesperado Model PDO
+05 Jul 2025 08:35:46 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:35:46 [127.000.000.001] I:(OrdenCnt.php:33) E:GENERIC Error inesperado Model PDO
+05 Jul 2025 08:38:07 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:38:07 [127.000.000.001] I:(OrdenCnt.php:33) E:GENERIC Error inesperado Model PDO
+05 Jul 2025 08:38:08 [127.000.000.001] I:(proc orden) I:Ingreso en opcion
+05 Jul 2025 08:38:09 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:38:09 [127.000.000.001] I:(OrdenCnt.php:33) E:GENERIC Error inesperado Model PDO
+05 Jul 2025 08:38:10 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:38:11 [127.000.000.001] I:(OrdenCnt.php:33) E:GENERIC Error inesperado Model PDO
+05 Jul 2025 08:39:43 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:39:43 [127.000.000.001] I:(OrdenCnt.php:33) E:GENERIC Error inesperado Model PDO
+05 Jul 2025 08:40:32 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:40:32 [127.000.000.001] I:(OrdenCnt.php:33) E:GENERIC Error inesperado Model PDO
+05 Jul 2025 08:40:52 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:46:26 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:47:13 [127.000.000.001] I:(proc orden) I:Ingreso en opcion
+05 Jul 2025 08:47:14 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 08:52:38 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:21:17 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 09:21:18 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 09:21:19 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:23:14 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 09:23:15 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 09:23:16 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:26:18 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:27:31 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:29:57 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(checkUser) I:Verifica Ingreso
+05 Jul 2025 09:29:57 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Ingreso Exitoso [admin]
+05 Jul 2025 09:29:57 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Genera Token
+05 Jul 2025 09:29:57 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Elimina Registro Anterior
+05 Jul 2025 09:29:57 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Crea Registro
+05 Jul 2025 09:29:57 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(userTokenRegister) E:Error 22001: SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'ipnum' at row 1
+05 Jul 2025 09:30:16 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(checkUser) I:Verifica Ingreso
+05 Jul 2025 09:30:16 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Ingreso Exitoso [admin]
+05 Jul 2025 09:30:16 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Genera Token
+05 Jul 2025 09:30:16 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Elimina Registro Anterior
+05 Jul 2025 09:30:16 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Crea Registro
+05 Jul 2025 09:30:16 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(userTokenRegister) E:Error 22001: SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'ipnum' at row 1
+05 Jul 2025 09:30:18 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(checkUser) I:Verifica Ingreso
+05 Jul 2025 09:30:18 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Ingreso Exitoso [admin]
+05 Jul 2025 09:30:18 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Genera Token
+05 Jul 2025 09:30:18 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Elimina Registro Anterior
+05 Jul 2025 09:30:18 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Crea Registro
+05 Jul 2025 09:30:18 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(userTokenRegister) E:Error 22001: SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'ipnum' at row 1
+05 Jul 2025 09:30:19 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(checkUser) I:Verifica Ingreso
+05 Jul 2025 09:30:19 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Ingreso Exitoso [admin]
+05 Jul 2025 09:30:19 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Genera Token
+05 Jul 2025 09:30:19 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Elimina Registro Anterior
+05 Jul 2025 09:30:19 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Crea Registro
+05 Jul 2025 09:30:19 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(userTokenRegister) E:Error 22001: SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'ipnum' at row 1
+05 Jul 2025 09:31:00 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(checkUser) I:Verifica Ingreso
+05 Jul 2025 09:31:00 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Ingreso Exitoso [admin]
+05 Jul 2025 09:31:00 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Genera Token
+05 Jul 2025 09:31:00 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Elimina Registro Anterior
+05 Jul 2025 09:31:00 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(login) I:Crea Registro
+05 Jul 2025 09:31:00 [000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.001] I:(userTokenRegister) E:Error 22001: SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'ipnum' at row 1
+05 Jul 2025 09:34:37 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 09:34:37 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 09:34:39 [127.000.000.001] I:(proc orden) I:Ingreso en opcion
+05 Jul 2025 09:34:40 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:35:06 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 09:35:11 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 09:35:48 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:37:36 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:37:45 [127.000.000.001] I:(proc orden) I:Ingreso en opcion
+05 Jul 2025 09:37:56 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:38:53 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:40:39 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:42:58 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:47:38 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:57:12 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:58:41 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 09:58:48 [127.000.000.001] I:(proc orden) I:Ingreso en opcion
+05 Jul 2025 09:59:51 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 10:00:48 [127.000.000.001] I:(dashboard) I:Ingreso en opcion
+05 Jul 2025 10:00:50 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 10:00:57 [127.000.000.001] I:(ClienteCnt) I:Contador de registros
+05 Jul 2025 10:02:01 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 10:04:18 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 10:06:17 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 11:00:37 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 11:06:04 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 11:06:33 [127.000.000.001] I:(proc orden) I:Ingreso en opcion
+05 Jul 2025 11:07:14 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 11:08:22 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 11:08:43 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
+05 Jul 2025 11:09:20 [127.000.000.001] I:(fac orden) I:Ingreso en opcion
