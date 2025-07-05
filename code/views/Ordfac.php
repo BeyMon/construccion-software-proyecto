@@ -191,7 +191,7 @@ GenFunc::logSys("(fac orden) I:Ingreso en opcion");
     document.getElementById('orden-id').textContent = ordenId;
 
     // Consultar detalle de la orden desde el servidor
-    fetch('cnt/Ordencnt.php/id/' + encodeURIComponent(ordenId))
+    fetch('cnt/OrdenCnt.php/id/' + encodeURIComponent(ordenId))
          .then(function (res) {
            if (!res.ok) {
              throw new Error('Error al consultar la orden');
@@ -283,7 +283,7 @@ GenFunc::logSys("(fac orden) I:Ingreso en opcion");
     const ordenId = document.getElementById('selorden').value;
 
     // Consultar detalle de la orden desde el servidor
-    fetch('cnt/Facturacnt.php/facoid/' + encodeURIComponent(ordenId))
+    fetch('cnt/FacturaCnt.php/facoid/' + encodeURIComponent(ordenId))
          .then(function (res) {
            if (!res.ok)
              throw new Error('Error al facturar orden');
