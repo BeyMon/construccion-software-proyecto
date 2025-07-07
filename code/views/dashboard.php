@@ -235,7 +235,7 @@ GenFunc::logSys("(dashboard) I:Ingreso en opcion");
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <!--div class="col-md-6">
           <div class="card">
             <div class="card-body p-0">
               <table class="table table-sm">
