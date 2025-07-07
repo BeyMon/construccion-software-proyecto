@@ -219,7 +219,7 @@ GenFunc::logSys("(fac orden) I:Ingreso en opcion");
            document.getElementById('estado').textContent = data.estado || '';
            console.log('detalles');
            // Luego cargar detalle de orden
-           fetch('cnt/Orddetcnt.php/' + encodeURIComponent(ordenId))
+           fetch('cnt/OrddetCnt.php/' + encodeURIComponent(ordenId))
                 .then(function (res) {
                   if (!res.ok)
                     throw new Error('Error al consultar detalle de orden');
@@ -244,11 +244,13 @@ GenFunc::logSys("(fac orden) I:Ingreso en opcion");
                     if (item.tipdet == '1') {
                       detalle = 'Producto: [' + item.iteid + '] ' + item.itenom + ' - ' + item.cantid +
                            ' $' + ( item.cantid * item.prcvta ).toFixed(2);
-                      subtotal = subtotal + ( item.cantid * item.prcvta );
+                      let valor = 0;
+                      valor = parseFloat(item.cantid * item.prcvta);
+                      subtotal = subtotal + valor;
                     }
                     if (item.tipdet == '2') {
-                      detalle = 'Servicio: [' + item.iteid + '] ' + item.itenom + ' -  $' + item.prcvta.toFixed(2);
-                      subtotal = subtotal + item.prcvta;
+                      detalle = 'Servicio: [' + item.iteid + '] ' + item.itenom + ' -  $' + ( 1 * item.prcvta ).toFixed(2);
+                      subtotal = subtotal + parseFloat(item.prcvta);
                     }
                     if (item.tipdet == '0') {
                       detalle = 'Observacion: ' + item.observ;
@@ -260,11 +262,13 @@ GenFunc::logSys("(fac orden) I:Ingreso en opcion");
 
                     tbody.appendChild(tr);
                   });
-                  document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
-                  const impuesto = subtotal * 0.15; // 15% de impuesto
-                  document.getElementById('impuesto').textContent = '$' + impuesto.toFixed(2);
-                  const total = subtotal + impuesto;
-                  document.getElementById('total').textContent = '$' + total.toFixed(2);
+                  document.getElementById('subtotal').textContent = ftos(subtotal);
+                  let impuesto = 0;
+                  impuesto = subtotal * 0.15; // 15% de impuesto
+                  document.getElementById('impuesto').textContent = ftos(impuesto);
+                  let total = 0;
+                  total = parseFloat(subtotal + impuesto);
+                  document.getElementById('total').textContent = ftos(total);
 
                 });
          })
